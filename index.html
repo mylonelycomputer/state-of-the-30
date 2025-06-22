@@ -1,7 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noai, noimageai">
+  <link rel="stylesheet" href="style.css">
+  <title>State of The 30</title>
 </head>
 
 <body>
@@ -20,10 +24,10 @@
 <script src="https://unpkg.com/rita"></script>
 <script type ="text/javascript" src ="script.js">
 
-let text; 
-let genText; 
+let text;
+let genText;
 let markov;
-      
+
 
 //grab some text
       fetch("duterte.txt")
@@ -32,7 +36,7 @@ let markov;
           })
           .then(data => {
             text = data;
-        
+
             //generate text
             generate();
           });
@@ -40,28 +44,28 @@ let markov;
 
 //function which creates a markov model and adds it to the HTML
 function generate(){
-        
+
         // create a markov model w' n=4
         markov = RiTa.markov(4);
-        
+
         // load text into the model
         markov.addText(text);
-        
+
         //generate 10 lines
         genText = markov.generate(10);
         console.log(genText);
-        
+
         //adds a space between all the random stuff
-        genText.join(" ");    
-        
+        genText.join(" ");
+
         //add it to the HTML
         document.getElementById("container").innerHTML = genText.join(" ");
-        
+
       }
-        
 
 
-  
+
+
 </script>
 
 </body>
